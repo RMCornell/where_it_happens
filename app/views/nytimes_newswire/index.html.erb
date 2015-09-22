@@ -16,7 +16,9 @@
           <p><%= article[:multimedia].last[:caption] %></p>
       <% end %>
 
+      <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{article[:geo_facet]}&zoom=4&size=600x300&maptype=hybrid&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C#{article[:geo_facet]}&key=#{ENV['google_static_maps_api_key']}") %>
 
+      <!--map = GoogleStaticMap.new(:zoom => 11, :center => MapLocation.new(:address => "Washington, DC"))-->
 
       <p class="lead"><%= article[:abstract] %></p>
       <p><%= link_to "View Full Article", article[:url] %></p>

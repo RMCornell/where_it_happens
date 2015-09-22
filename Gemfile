@@ -52,10 +52,8 @@ gem 'omniauth-linkedin'
 # Hurley: API Access
 gem 'hurley'
 
-# Faraday and Typheous: Alternate API Access Options
-gem 'faraday'
-gem 'typhoeus'
-
+# GoogleStaticMaps: Mapping Support
+gem 'googlestaticmap'
 
 group :development, :test do
 # Application Specific Gems
