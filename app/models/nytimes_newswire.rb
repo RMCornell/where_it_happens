@@ -6,8 +6,4 @@ class NytimesNewswire
   def self.all
     service.all_articles
   end
-
-  def self.find
-    service.article(url)
-  end
 end
