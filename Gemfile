@@ -35,7 +35,7 @@ gem 'figaro'
 gem 'devise'
 
 # OAuth: Basic OAuth Gem
-gem 'oauth'
+gem 'omniauth'
 
 # OAuth Twitter: Twitter Authentication
 gem 'omniauth-twitter'

@@ -241,7 +241,7 @@ DEPENDENCIES
   hurley
   jbuilder (~> 2.0)
   jquery-rails
-  oauth
+  omniauth
   omniauth-facebook
   omniauth-instagram
   omniauth-linkedin
