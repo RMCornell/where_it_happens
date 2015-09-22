@@ -1,0 +1,11 @@
+<h1>NYTimes NewsWire</h1>
+<% @articles.each do |article| %>
+    <ul>
+        <li><%= article[:title] %></li>
+        <li><%= article[:url] %></li>
+        <li><%= article[:abstract] %></li>
+        <li><%= article[:geo_facet] %></li>
+
+        <li><%#= article %></li>
+    </ul>
+<% end %>

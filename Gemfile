@@ -49,8 +49,13 @@ gem 'omniauth-facebook'
 # Oauth LinkedIn: LinkedIn Authentication
 gem 'omniauth-linkedin'
 
-# Hurley: API Access and Management
+# Hurley: API Access
 gem 'hurley'
+
+# Faraday and Typheous: Alternate API Access Options
+gem 'faraday'
+gem 'typhoeus'
+
 
 group :development, :test do
 # Application Specific Gems
