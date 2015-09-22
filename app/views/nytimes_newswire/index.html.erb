@@ -1,0 +1,25 @@
+<h1>NYTimes NewsWire</h1>
+<% @articles.each do |article| %>
+    <h3><a href="#" data-reveal-id="a-<%= article[:title].parameterize %>"><%= article[:title] %></a></h3>
+    <p><%= article[:geo_facet] %></p>
+    <%= image_tag article[:thumbnail_standard] %>
+
+    <p><%#= article[:multimedia] %></p>
+
+    <div id="a-<%= article[:title].parameterize %>" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <h2 id="modalTitle"><%= article[:title] %></h2>
+      <p><%= article[:byline] %></p>
+
+
+      <% if article[:multimedia].class != String %>
+        <%= image_tag article[:multimedia].last[:url]  %>
+          <p><%= article[:multimedia].last[:caption] %></p>
+      <% end %>
+
+
+
+      <p class="lead"><%= article[:abstract] %></p>
+      <p><%= link_to "View Full Article", article[:url] %></p>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+<% end %>
