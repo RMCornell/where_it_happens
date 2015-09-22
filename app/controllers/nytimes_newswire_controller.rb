@@ -3,7 +3,8 @@ class NytimesNewswireController < ApplicationController
     @articles = NytimesNewswire.all
   end
 
-  def show
-    @article = NytimesNewswire.find_by(url: params[:url])
+  def map(geo_facet)
+    @map = Googlemap.article_location(geo_facet)
   end
+
 end
