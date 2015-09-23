@@ -1,8 +1,9 @@
+<div class="medium-7 medium-centered columns">
 <h1>NewsWire</h1>
 <% @articles.each do |article| %>
-    <h3><a href="#" data-reveal-id="a-<%= article[:title].parameterize %>"><%= article[:title] %></a></h3>
+    <h3 class="headline"><a href="#" data-reveal-id="a-<%= article[:title].parameterize %>"><%= article[:title] %></a></h3>
     <% if article[:thumbnail_standard] != "" %>
-        <%= image_tag article[:thumbnail_standard] %>
+        <%= image_tag article[:thumbnail_standard], class: "thumbnail_image" %>
     <% else %>
         <%= image_tag "busy-people-background.jpg", class: "thumbnail_image" %>
     <% end %>
@@ -22,7 +23,7 @@
         <%= image_tag "busy-people-background.jpg", class: "story_image" %>
       <% end %>
       <% if article[:geo_facet] != "" %>
-        <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{article[:geo_facet]}&zoom=4&size=300x300&maptype=hybrid&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C#{article[:geo_facet]}&key=#{ENV['google_static_maps_api_key']}", class: "map_image") %>
+        <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{article[:geo_facet]}&zoom=4&size=300x300&maptype=roadmap&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C#{article[:geo_facet]}&key=#{ENV['google_static_maps_api_key']}", class: "map_image") %>
       <% else %>
         <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=unitedstates&zoom=1&size=300x300&maptype=hybrid&key=#{ENV['google_static_maps_api_key']}", class: "map_image") %>
       <% end %>
@@ -32,3 +33,4 @@
       <a class="close-reveal-modal" aria-label="Close">&#215;</a>
     </div>
 <% end %>
+</div>

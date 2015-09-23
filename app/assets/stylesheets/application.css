@@ -18,6 +18,10 @@
 
 /*Custom CSS*/
 
+.headline {
+    float: right;
+}
+
 .thumbnail_image {
     height: 75px;
     width: 75px;
