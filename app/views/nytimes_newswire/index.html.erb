@@ -1,18 +1,21 @@
 <div class="medium-7 medium-centered columns">
 <h1>NewsWire</h1>
 <% @articles.each do |article| %>
-    <h3 class="headline"><a href="#" data-reveal-id="a-<%= article[:title].parameterize %>"><%= article[:title] %></a></h3>
+  <div>
+    <h4 class="headline"><a href="#" data-reveal-id="a-<%= article[:title].parameterize %>"><%= article[:title] %></a></h4><br>
+      <!--<p class="byline"><%#= article[:byline] %></p>-->
     <% if article[:thumbnail_standard] != "" %>
         <%= image_tag article[:thumbnail_standard], class: "thumbnail_image" %>
     <% else %>
         <%= image_tag "busy-people-background.jpg", class: "thumbnail_image" %>
     <% end %>
+  </div>
 
 
     <p><%#= article %></p>
 
     <div id="a-<%= article[:title].parameterize %>" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-      <h3 id="modalTitle"><%= article[:title] %></h3>
+      <h4 id="modalTitle"><%= article[:title] %></h4>
       <p><%= article[:byline] %></p>
 
 

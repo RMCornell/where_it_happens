@@ -20,6 +20,12 @@
 
 .headline {
     float: right;
+    display: block;
+}
+
+.byline {
+    float: right;
+    display: inline-block;
 }
 
 .thumbnail_image {
