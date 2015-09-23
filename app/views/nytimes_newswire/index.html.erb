@@ -8,7 +8,7 @@
     <% end %>
 
 
-    <p><%= article %></p>
+    <p><%#= article %></p>
 
     <div id="a-<%= article[:title].parameterize %>" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
       <h3 id="modalTitle"><%= article[:title] %></h3>
@@ -16,13 +16,16 @@
 
 
       <% if article[:multimedia].class != String %>
-        <%= image_tag article[:multimedia].last[:url]  %>
-          <p><%= article[:multimedia].last[:caption] %></p>
+        <%= image_tag article[:multimedia].last[:url], class: "story_image"  %>
+          <p><%#= article[:multimedia].last[:caption] %></p>
       <% else %>
         <%= image_tag "busy-people-background.jpg", class: "story_image" %>
       <% end %>
-
-      <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{article[:geo_facet]}&zoom=4&size=300x300&maptype=hybrid&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C#{article[:geo_facet]}&key=#{ENV['google_static_maps_api_key']}") %>
+      <% if article[:geo_facet] != "" %>
+        <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{article[:geo_facet]}&zoom=4&size=300x300&maptype=hybrid&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C#{article[:geo_facet]}&key=#{ENV['google_static_maps_api_key']}", class: "map_image") %>
+      <% else %>
+        <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=unitedstates&zoom=1&size=300x300&maptype=hybrid&key=#{ENV['google_static_maps_api_key']}", class: "map_image") %>
+      <% end %>
 
       <p class="lead"><%= article[:abstract] %></p>
       <p><%= link_to "View Full Article", article[:url] %></p>

@@ -26,6 +26,13 @@
 .story_image {
     height: 293px;
     width: 440px;
+    float: right;
+}
+
+.map_image {
+    height: 293px;
+    width: 440px;
+
 }
 
 /*Header CSS*/
