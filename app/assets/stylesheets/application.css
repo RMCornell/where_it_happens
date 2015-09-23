@@ -16,6 +16,18 @@
 
  */
 
+/*Custom CSS*/
+
+.thumbnail_image {
+    height: 75px;
+    width: 75px;
+}
+
+.story_image {
+    height: 293px;
+    width: 440px;
+}
+
 /*Header CSS*/
 .header {
     background: url("busy-people-background.jpg") no-repeat center center;

@@ -10,10 +10,13 @@
       </div>
     </div>
     <ul class="subnav hide-for-small-only">
-      <li><%#= link_to "Authorize Twitter", '/users/auth/twitter' %></li>
-      <li><%#= link_to "Authorize Instagram", '/users/auth/instagram' %></li>
-      <li><%= link_to "Authorize Facebook", '/users/auth/facebook' %></li>
-      <li><%= link_to "Signout", destroy_user_session_path, method: :delete %></li>
+      <% if current_user %>
+        <li><%#= link_to "Authorize Twitter", '/users/auth/twitter' %></li>
+        <li><%#= link_to "Authorize Instagram", '/users/auth/instagram' %></li>
+        <li><%= link_to "Signout", destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Sign In With Facebook", '/users/auth/facebook' %></li>
+      <% end %>
     </ul>
   </header>
 </div>
