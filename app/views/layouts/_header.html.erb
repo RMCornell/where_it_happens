@@ -1,23 +1,42 @@
 <div class="sticky">
-  <header class="header">
-    <div class="row">
-      <div class="medium-8 columns">
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><%= link_to "WhereItHappens", root_path %></h1>
+    </li>
+  </ul>
 
-        <h1><%= link_to "Where It Happens", root_path %></h1>
-
-
-      </div>
-    </div>
-    <ul class="subnav hide-for-small-only">
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
       <% if current_user %>
-
-        <li><%#= link_to "Authorize Instagram", '/users/auth/instagram' %></li>
-        <li><%= link_to "Signout", destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
       <% else %>
-        <li><%= link_to "Sign In With Facebook", '/users/auth/facebook' %></li>
-        <li><%= link_to "Sign In With Twitter", '/users/auth/twitter' %></li>
+          <li><%= link_to "Sign In With Facebook", '/users/auth/facebook' %></li>
+          <li><%= link_to "Sign In With Twitter", '/users/auth/twitter' %></li>
+          <li><%= link_to "Sign In With Email", '/users/sign_in' %></li>
+      <!--<li class="has-dropdown">-->
+        <!--<a href="#">Login Options</a>-->
+        <!--<ul class="dropdown">-->
+          <!--<li><%#= link_to "Sign In With Facebook", '/users/auth/facebook' %></li>-->
+          <!--<li><%#= link_to "Sign In With Twitter", '/users/auth/twitter' %></li>-->
+          <!--<li><%#= link_to "Sign In With Email", '/users/sign_in' %></li>-->
+        <!--</ul>-->
+      <!--</li>-->
       <% end %>
     </ul>
-  </header>
-</div>
 
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <li class="has-dropdown">
+        <a href="#">Sections</a>
+        <ul class="dropdown">
+          <li><a href="#">Section 1</a></li>
+          <li><a href="#">Section 2</a></li>
+          <li><a href="#">Section 3</a></li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</nav>
+</div>
