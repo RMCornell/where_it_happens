@@ -1,8 +1,24 @@
-<h1>NYTimes Top Stories World</h1>
+<div class="row">
+  <div class="large-12 large-centered columns">
+    <h1>Top Stories Across The World</h1>
+  </div>
+</div>
+
 <% @world_articles.each do |article| %>
 <div class="story-card">
     <div class="row">
-        <div class="large-12 columns story-header"><%= article[:title]  %></div>
+      <nav class="top-bar" data-topbar>
+        <div class="logo">
+          <a href="http://icons.iconarchive.com/icons/martz90/circle-addon1/512/new-york-times-icon.png"><img src="http://icons.iconarchive.com/icons/martz90/circle-addon1/512/new-york-times-icon.png" /></a>
+        </div>
+        <section class="top-bar-section">
+          <!-- Right Nav Section -->
+          <ul class="center-buttons">
+            <li><h3><strong><%= article[:title]  %></strong></h3></li>
+          </ul>
+        </section>
+      </nav>
+    </div>
     </div>
 
     <div class="row">
@@ -23,10 +39,32 @@
     </div>
 
     <div class="row">
-        <div class="large-12 columns story-footer">Story Footer</div>
+        <div class="large-12 columns story-footer">
+          <div>
+            <nav class="top-bar" data-topbar role="navigation">
+              <section class="top-bar-section">
+                <!-- Left Nav Section -->
+                <ul class="left">
+                  <li><a href="#" data-reveal-id="a-<%=  article[:url].parameterize %>">Read More</a></li>
+                  <li><a href="#">View Map</a></li>
+                  <li><a href="#">Tweet</a></li>
+                </ul>
+              </section>
+            </nav>
+          </div>
+        </div>
     </div>
 </div>
+    </div>
+
+    <div id="a-<%= article[:url].parameterize %>" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <h2 id="modalTitle"><%= article[:title] %></h2>
+      <p class="lead"></p>
+      <p>This is where the Full Article Text will appear</p>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
 <% end %>
+
 
 <%#= @world_articles %>
 
