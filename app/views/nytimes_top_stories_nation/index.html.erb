@@ -1,5 +1,5 @@
-<h1>NYTimes NewsWire</h1>
-<% @articles.each do |article| %>
+<h1>NYTimes Top Stories Nation</h1>
+<% @nation_articles.each do |article| %>
     <div class="story-card">
       <div class="row">
         <div class="large-12 columns story-header"><%= article[:title]  %></div>
@@ -27,3 +27,6 @@
       </div>
     </div>
 <% end %>
+
+<%#= @nation_articles %>
+

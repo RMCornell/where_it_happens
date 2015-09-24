@@ -18,32 +18,45 @@
 
 /*Custom CSS*/
 /*Featured Article CSS*/
-.featured-story-wrapper {
-    width: 100%;
-    height: 250px;
+.story-card {
     background-image: url("busy-people-background.jpg");
     margin-top: 25px;
-    margin-bottom: 25px;
+
 }
 
-.featured-story-frame {
-    width: 100%;
+.story-header {
+    background-color: blue;
+    height: 50px;
+}
+
+.story-wrapper {
     height: 200px;
-    background-color: grey;
-    opacity: .9;
-    margin-top: 25px;
-    padding-top: 25px;
-    padding-bottom: 25px;
 }
 
-.featured-story-title {
+.story-frame {
+    background-color: grey;
+    height: 200px;
+}
+
+.story-title {
+    height: 200px;
+}
+
+.story-footer {
+    background-color: blue;
+    height: 50px;
+}
+
+.story-photo {
     height: 150px;
-    padding-top: 25px;
-    vertical-align: middle;
+    width: 100%;
+    background-color: gold;
+
+
 }
 
 .newswire {
-    width: 100%;
+    width: 50%;
     height: 50px;
     background-color: #666666;
 
@@ -96,7 +109,7 @@
 }
 
 .map_image {
-    height: 293px;
+    height: 200px;
     width: 440px;
 }
 
