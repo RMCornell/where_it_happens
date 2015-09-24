@@ -1,0 +1,32 @@
+<h1>NYTimes Top Stories World</h1>
+<% @world_articles.each do |article| %>
+<div class="story-card">
+    <div class="row">
+        <div class="large-12 columns story-header"><%= article[:title]  %></div>
+    </div>
+
+    <div class="row">
+      <% if article[:multimedia].class != String %>
+        <div class="large-4 columns story-wrapper"><%= image_tag article[:multimedia].last[:url], class: "story_image" %></div>
+      <% else %>
+        <div class="large-4 columns story-wrapper"><%= image_tag "busy-people-background.jpg", class: "story_image" %></div>
+      <% end %>
+
+        <div class="large-4 columns story-frame"><%= article[:abstract] %></div>
+      <div class="large-4 columns story-map">
+      <% if article[:geo_facet] != "" %>
+          <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{article[:geo_facet]}&zoom=4&size=300x300&maptype=roadmap&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C#{article[:geo_facet]}&key=#{ENV['google_static_maps_api_key']}", class: "map_image") %>
+      <% else %>
+          <%= image_tag("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSWx_9W6XLlvIio7F5XaXNGiNeRmF1sU9-ZKN6oVNkAqcNzwwZd", class: "map_image") %>
+      <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="large-12 columns story-footer">Story Footer</div>
+    </div>
+</div>
+<% end %>
+
+<%#= @world_articles %>
+

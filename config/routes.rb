@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root 'nytimes_newswire#index'
   get '/', to: "nytimes_newswire#index"
   get '/newswires', as: "newswires", to: "nytimes_newswire#index"
-  get '/newswires/:id', as: "newswire", to: 'nytimes_newswire#show'
+
+  get '/topworldstories', as: "topworldstories", to: "nytimes_top_stories_world#index"
+  get '/topnationstories', as: "topnationstories", to: "nytimes_top_stories_nation#index"
 
 end
