@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-12 large-centered columns">
-    <h1>Top Stories Across The World</h1>
+    <h1>Top World Stories</h1>
   </div>
 </div>
 
@@ -46,7 +46,7 @@
                 <!-- Left Nav Section -->
                 <ul class="left">
                   <li><a href="#" data-reveal-id="a-<%=  article[:url].parameterize %>">Read More</a></li>
-                  <li><a href="#">View Map</a></li>
+                  <li><a href="#" data-reveal-id="a-<%=  article[:title].parameterize %>">View Map</a></li>
                   <li><a href="#">Tweet</a></li>
                 </ul>
               </section>
@@ -54,13 +54,22 @@
           </div>
         </div>
     </div>
-</div>
-    </div>
 
     <div id="a-<%= article[:url].parameterize %>" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
       <h2 id="modalTitle"><%= article[:title] %></h2>
       <p class="lead"></p>
       <p>This is where the Full Article Text will appear</p>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+
+    <div id="a-<%= article[:title].parameterize %>" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <h2 id="modalTitle"><%= article[:title] %></h2>
+      <p class="lead"></p>
+      <% if article[:geo_facet] != "" %>
+          <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{article[:geo_facet]}&zoom=4&size=300x300&maptype=roadmap&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C#{article[:geo_facet]}&key=#{ENV['google_static_maps_api_key']}", class: "modal-map") %>
+      <% else %>
+          <%= image_tag("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSWx_9W6XLlvIio7F5XaXNGiNeRmF1sU9-ZKN6oVNkAqcNzwwZd", class: "modal-map") %>
+      <% end %>
       <a class="close-reveal-modal" aria-label="Close">&#215;</a>
     </div>
 <% end %>

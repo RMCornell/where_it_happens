@@ -11,15 +11,15 @@ class NytimesTopStory
     service.national
   end
 
-  def self.politics
+  def self.all_politics
     service.politics
   end
 
-  def self.business
+  def self.all_business
     service.business
   end
 
-  def self.technology
+  def self.all_technology
     service.technology
   end
 end
