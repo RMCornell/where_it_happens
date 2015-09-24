@@ -4,11 +4,7 @@ class NytimesArticle
     @service ||= NytimesArticlesService.new
   end
 
-  def self.all
-    service.articles
-  end
-
-  def self.find
-    service.article(id)
+  def self.query(term)
+    service.query_term(term)
   end
 end

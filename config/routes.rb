@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   get '/toptechnologystories', as: "toptechnologystories", to: "nytimes_top_stories_technology#index"
   get '/toppoliticstories', as: "toppoliticstories", to: "nytimes_top_stories_politic#index"
 
+  get '/search_articles', as: "search_articles", to: "nytimes_article_search#index"
+
 end
