@@ -33,6 +33,33 @@
       <li><%= link_to "Politics", toppoliticstories_path %></li>
       <li><%= link_to "Technology", toptechnologystories_path %></li>
       <li><%= link_to "Business", topbusinessstories_path %></li>
+      <li class="has-form">
+        <div class="row collapse">
+          <div class="large-8 small-9 columns">
+            <%= form_tag("/search_articles", method: "get") do %>
+                <%#= label_tag(:q, "Search") %>
+                <%= text_field_tag(:q) %>
+          </div>
+          <div class="large-4 small-3 columns">
+            <%= submit_tag("Search") %>
+            <% end %>
+          </div>
+
+          <%#= form_tag("/search", method: "get") do %>
+              <%#= label_tag(:q, "Search for:") %>
+              <%#= text_field_tag(:q) %>
+              <%#= submit_tag("Search") %>
+          <%# end %>
+
+
+
+
+
+
+
+
+        </div>
+      </li>
     </ul>
   </section>
 </nav>
