@@ -7,9 +7,9 @@ class NytimesArticlesService
     connection.query["api-key"] = ENV["nytimes_articles_api_key"]
   end
 
-  def obama
+  def query_term(term)
     response = connection.get("") do |req|
-      req.query["q"] = "Obama"
+      req.query["q"] = term
     end
     parse(response.body)
   end
