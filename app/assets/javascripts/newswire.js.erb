@@ -1,0 +1,73 @@
+$(document).ready(function() {
+    getArticles()
+    renderArticle()
+})
+
+function getArticles() {
+    var newsWireURL = "http://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=<%= ENV["nytimes_newswire_api_key"] %>"
+
+    $.ajax({
+        type: "GET",
+        url: newsWireURL,
+        success: function(articles) {
+            console.log("Articles Loaded"),
+            articles["results"]
+        }
+    })
+}
+
+function renderArticle(articles) {
+    $("#newswire-articles").append(
+            "<div class='' data-id='"
+            + articles["title"]
+            + "'><h6>Published on "
+            + articles["url"]
+            + "</h6><p>"
+            + articles["abstract"]
+            + "</p>"
+            + "</div>"
+    )
+}
+
+
+
+
+
+//
+//function fetchPosts() {
+//    var newestItemID = parseInt($(".post").last().attr("data-id"))
+//
+//    $.ajax({
+//        type:    "GET",
+//        url:     "https://turing-birdie.herokuapp.com/api/v1/posts.json",
+//        success: function(posts) {
+//            $.each(posts, function(index, post) {
+//                if (isNaN(newestItemID) || post.id > newestItemID) {
+//                    renderPost(post)
+//                }
+//            })
+//        },
+//        error: function(xhr) {
+//            console.log(xhr.responseText)
+//        }
+//    })
+//}
+
+
+//$(function() {
+//    $.ajax({
+//        url: "http://api.nytimes.com/svc/news/v3/content/nyt/business.jsonp?callback=nyt_biz_news_cb&api-key=put_your_api_key_here",
+//        dataType: "jsonp",
+//        jsonpCallback: "nyt_biz_news_db",
+//        cache: true
+//    })
+//            .done(function(data) {
+//                var results = data['results'];
+//                var html_str = "";
+//                for (var i in results) {
+//                    var result = results[i];
+//                    html_str += "<p><a href='" + result['url'] + "'>" + result['title'] + "</a><br/>" + result['byline'] + "</p>";
+//                }
+//                $("#news").html(html_str);
+//            });
+//});
