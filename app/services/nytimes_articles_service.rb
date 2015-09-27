@@ -9,7 +9,7 @@ class NytimesArticlesService
 
   def query_term(term)
     response = connection.get("") do |req|
-      req.query["q"] = term
+      req.query[:q] = term
     end
     parse(response.body)
   end
