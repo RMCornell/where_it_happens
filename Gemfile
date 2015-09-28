@@ -67,11 +67,16 @@ group :development, :test do
   # Capybara: Feature Testing
   gem 'capybara'
 
+  # Factory Girl: Tesing
+  gem 'factory_girl_rails'
+
   # Better Errors: Testing Assistance
   gem 'better_errors'
 
   # Binding of Caller: Testing Assistance
   gem 'binding_of_caller'
+
+
 end
 
 group :test do
@@ -81,6 +86,9 @@ group :test do
 
   # WebMock: API Testing
   gem 'webmock'
+
+  # SimpleCov: Test Coverage
+  gem 'simplecov'
 end
 
 
