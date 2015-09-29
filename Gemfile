@@ -76,6 +76,9 @@ group :development, :test do
   # Binding of Caller: Testing Assistance
   gem 'binding_of_caller'
 
+  # SimpleCov: Test Coverage
+  gem 'simplecov'
+
 
 end
 
