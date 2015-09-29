@@ -9,7 +9,12 @@ function getBusinessArticles() {
         success: function(articles){
             var stories = articles.results;
             $.each(stories, function(index, story){
+                var newArticleDate        = new Date(story.created_date);
+                var lastArticleDateString = $(".story").last().attr("created_date");
+                var lastArticleDate       = new Date(lastArticleDateString);
+                if (lastArticleDateString === undefined || newArticleDate > lastArticleDate) {
                     renderBusinessStory(story)
+                }
             })
         }
     })
@@ -21,6 +26,7 @@ function renderBusinessStory(story) {
             +"<div class='row'>"
             +"<div class='medium-12 columns top-stories-business-title'>"
             +"<h4>"+story.title+"</h4>"
+            +"<h6>"+story.created_date+"</h6>"
             +"</div>"
             +"</div>"
             +"<div class='row'>"

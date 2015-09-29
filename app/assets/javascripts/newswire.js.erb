@@ -5,11 +5,16 @@ $(document).ready(function(){
 function getNewswireArticles() {
     $.ajax({
         type: "GET",
-        url: "http://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=<%= ENV["nytimes_newswire_api_key"]  %>",
+        url: "https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=<%= ENV["nytimes_newswire_api_key"]  %>",
         success: function(articles){
             var stories = articles.results;
             $.each(stories, function(index, story){
+                var newArticleDate        = new Date(story.created_date);
+                var lastArticleDateString = $(".story").last().attr("created_date");
+                var lastArticleDate       = new Date(lastArticleDateString);
+                if (lastArticleDateString === undefined || newArticleDate > lastArticleDate) {
                     renderNewswireStory(story)
+                }
             })
         }
     })
@@ -21,7 +26,7 @@ function renderNewswireStory(story) {
             +"<div class='row'>"
             +"<div class='medium-12 columns newswire-title'>"
             +"<h4>"+story.title+"</h4>"
-            +"<h6>"+story.created_date+"</h6>"
+            +"<h6>"+new Date(story.created_date)+"</h6>"
             +"</div>"
             +"</div>"
             +"<div class='row'>"
