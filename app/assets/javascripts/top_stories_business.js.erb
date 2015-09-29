@@ -3,44 +3,52 @@ $(document).ready(function(){
 });
 
 function getBusinessArticles() {
-
     $.ajax({
         type: "GET",
         url: "http://api.nytimes.com/svc/topstories/v1/business.json?api-key=<%= ENV["nytimes_top_stories_api_key"]  %>",
         success: function(articles){
             var stories = articles.results;
             $.each(stories, function(index, story){
-                $("#top-stories-business-articles").append(
-                        "<div class='top-stories-business-articles'>"
-                        +"<div class='row'>"
-                        +"<div class='medium-12 columns top-stories-business-title'>"
-                        +"<h4>"+story.title+"</h4>"
-                        +"</div>"
-                        +"</div>"
-                        +"<div class='row'>"
-                        +"<div class='medium-6 columns top-stories-business-byline'>"
-                        +"<p>"+story.byline+"</p>"
-                        +"</div>"
-                        +"<div class='medium-6 columns top-stories-business-section'>"
-                        +"<p>"+story.section+"</p>"
-                        +"</div>"
-                        +"</div>"
-
-                        +"<div class='row'>"
-                        +"<div class='medium-12 columns top-stories-business-abstract'>"
-                        +"<p>"+story.abstract+"</p>"
-                        +"</div>"
-                        +"</div>"
-                        +"<div class='row'>"
-                        +"<div>"
-                        +"<a class='button' href='"+story.url+"'>Read More</a>"
-                        +"</div>"
-                        +"</div>"
-                        +"<hr>"
-                        +"</div>"
-                );
+                var newArticleDate        = new Date(story.created_date);
+                var lastArticleDateString = $(".story").last().attr("created_date");
+                var lastArticleDate       = new Date(lastArticleDateString);
+                if (lastArticleDateString === undefined || newArticleDate > lastArticleDate) {
+                    renderBusinessStory(story)
+                }
             })
-
-        },
+        }
     })
+}
+
+function renderBusinessStory(story) {
+    $("#top-stories-business-articles").append(
+            "<div class='top-stories-business-articles'>"
+            +"<div class='row'>"
+            +"<div class='medium-12 columns top-stories-business-title'>"
+            +"<h4>"+story.title+"</h4>"
+            +"<h6>"+story.created_date+"</h6>"
+            +"</div>"
+            +"</div>"
+            +"<div class='row'>"
+            +"<div class='medium-6 columns top-stories-business-byline'>"
+            +"<p>"+story.byline+"</p>"
+            +"</div>"
+            +"<div class='medium-6 columns top-stories-business-section'>"
+            +"<p>"+story.section+"</p>"
+            +"</div>"
+            +"</div>"
+
+            +"<div class='row'>"
+            +"<div class='medium-12 columns top-stories-business-abstract'>"
+            +"<p>"+story.abstract+"</p>"
+            +"</div>"
+            +"</div>"
+            +"<div class='row'>"
+            +"<div>"
+            +"<a class='button' href='"+story.url+"'>Read More</a>"
+            +"</div>"
+            +"</div>"
+            +"<hr>"
+            +"</div>"
+    );
 }

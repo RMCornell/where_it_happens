@@ -3,44 +3,52 @@ $(document).ready(function(){
 });
 
 function getPoliticsArticles() {
-
     $.ajax({
         type: "GET",
         url: "http://api.nytimes.com/svc/topstories/v1/politics.json?api-key=<%= ENV["nytimes_top_stories_api_key"]  %>",
         success: function(articles){
             var stories = articles.results;
             $.each(stories, function(index, story){
-                $("#top-stories-politics-articles").append(
-                        "<div class='top-stories-politics-articles'>"
-                        +"<div class='row'>"
-                        +"<div class='medium-12 columns top-stories-politics-title'>"
-                        +"<h4>"+story.title+"</h4>"
-                        +"</div>"
-                        +"</div>"
-                        +"<div class='row'>"
-                        +"<div class='medium-6 columns top-stories-politics-byline'>"
-                        +"<p>"+story.byline+"</p>"
-                        +"</div>"
-                        +"<div class='medium-6 columns top-stories-politics-section'>"
-                        +"<p>"+story.section+"</p>"
-                        +"</div>"
-                        +"</div>"
-
-                        +"<div class='row'>"
-                        +"<div class='medium-12 columns top-stories-politics-abstract'>"
-                        +"<p>"+story.abstract+"</p>"
-                        +"</div>"
-                        +"</div>"
-                        +"<div class='row'>"
-                        +"<div>"
-                        +"<a class='button' href='"+story.url+"'>Read More</a>"
-                        +"</div>"
-                        +"</div>"
-                        +"<hr>"
-                        +"</div>"
-                );
+                var newArticleDate        = new Date(story.created_date);
+                var lastArticleDateString = $(".story").last().attr("created_date");
+                var lastArticleDate       = new Date(lastArticleDateString);
+                if (lastArticleDateString === undefined || newArticleDate > lastArticleDate) {
+                    renderPoliticsStory(story)
+                }
             })
-
-        },
+        }
     })
+}
+
+function renderPoliticsStory(story) {
+    $("#top-stories-politics-articles").append(
+            "<div class='top-stories-politics-articles'>"
+            +"<div class='row'>"
+            +"<div class='medium-12 columns top-stories-politics-title'>"
+            +"<h4>"+story.title+"</h4>"
+            +"<h6>"+story.created_date+"</h6>"
+            +"</div>"
+            +"</div>"
+            +"<div class='row'>"
+            +"<div class='medium-6 columns top-stories-politics-byline'>"
+            +"<p>"+story.byline+"</p>"
+            +"</div>"
+            +"<div class='medium-6 columns top-stories-politics-section'>"
+            +"<p>"+story.section+"</p>"
+            +"</div>"
+            +"</div>"
+
+            +"<div class='row'>"
+            +"<div class='medium-12 columns top-stories-politics-abstract'>"
+            +"<p>"+story.abstract+"</p>"
+            +"</div>"
+            +"</div>"
+            +"<div class='row'>"
+            +"<div>"
+            +"<a class='button' href='"+story.url+"'>Read More</a>"
+            +"</div>"
+            +"</div>"
+            +"<hr>"
+            +"</div>"
+    );
 }
