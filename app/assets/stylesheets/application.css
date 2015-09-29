@@ -18,6 +18,29 @@
 
 /*Custom CSS*/
 /*Featured Article CSS*/
+
+
+.newswire-title {
+    background-color: #FF7706;
+}
+
+.newswire-byline {
+    background-color: #FF9238;
+}
+
+.newswire-section{
+    background-color: #FF9238;
+}
+
+.newswire-abstract{
+    background-color: #FFAA64;
+}
+
+.newswire-link {
+
+}
+
+
 .story-card {
     /*background-image: url("busy-people-background.jpg");*/
     margin-top: 25px;
