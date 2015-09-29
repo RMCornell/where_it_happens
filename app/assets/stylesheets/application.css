@@ -18,7 +18,9 @@
 
 /*Custom CSS*/
 /*Featured Article CSS*/
-
+.newswire-page {
+    background-color: grey;
+}
 
 .newswire-title {
     background-color: #FF7706;
@@ -37,7 +39,6 @@
 }
 
 .newswire-link {
-
 }
 
 
