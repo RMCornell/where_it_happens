@@ -17,7 +17,7 @@
  */
 
 /*Custom CSS*/
-/*Featured Article CSS*/
+/*NewsWire Page*/
 .newswire-page {
     background-color: grey;
 }
@@ -40,6 +40,49 @@
 
 .newswire-link {
 }
+
+/*Top Stories - Business Page*/
+.top-stories-business-page {
+    background-color: grey;
+}
+
+.top-stories-business-title {
+    background-color: #1749BD;
+}
+
+.top-stories-business-byline {
+    background-color: #3B64C3;
+}
+
+.top-stories-business-section {
+    background-color: #3B64C3;
+}
+
+.top-stories-business-abstract {
+    background-color: #5F81CF;
+}
+
+/*Top Stories - National Page*/
+.top-stories-nation-page {
+    background-color: grey;
+}
+
+.top-stories-nation-title {
+    background-color: #1749BD;
+}
+
+.top-stories-nation-byline {
+    background-color: #3B64C3;
+}
+
+.top-stories-nation-section {
+    background-color: #3B64C3;
+}
+
+.top-stories-nation-abstract {
+    background-color: #5F81CF;
+}
+
 
 
 .story-card {

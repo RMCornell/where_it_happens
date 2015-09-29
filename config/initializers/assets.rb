@@ -4,7 +4,11 @@
 Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w( newswire.js )
-
+Rails.application.config.assets.precompile += %w( top_stories_business.js )
+Rails.application.config.assets.precompile += %w( top_stories_nation.js )
+Rails.application.config.assets.precompile += %w( top_stories_politics.js )
+Rails.application.config.assets.precompile += %w( top_stories_technology.js )
+Rails.application.config.assets.precompile += %w( top_stories_world.js )
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 
