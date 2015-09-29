@@ -1,0 +1,46 @@
+$(document).ready(function(){
+    getArticles()
+});
+
+function getArticles() {
+
+    $.ajax({
+        type: "GET",
+        url: "http://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=<%= ENV["nytimes_newswire_api_key"]  %>",
+        success: function(articles){
+            var stories = articles.results;
+            $.each(stories, function(index, story){
+                $("#newswire-article").append(
+                        "<div class='newsline-articles'>"
+                        +"<div class='row'>"
+                            +"<div class='medium-12 columns newswire-title'>"
+                                +"<h4>"+story.title+"</h4>"
+                            +"</div>"
+                        +"</div>"
+                        +"<div class='row'>"
+                            +"<div class='medium-6 columns newswire-byline'>"
+                                +"<p>"+story.byline+"</p>"
+                            +"</div>"
+                            +"<div class='medium-6 columns newswire-section'>"
+                                +"<p>"+story.section+"</p>"
+                            +"</div>"
+                        +"</div>"
+
+                        +"<div class='row'>"
+                            +"<div class='medium-12 columns newswire-abstract'>"
+                                +"<p>"+story.abstract+"</p>"
+                            +"</div>"
+                        +"</div>"
+                        +"<div class='row'>"
+                            +"<div>"
+                                +"<a class='button' href='"+story.url+"'>Read More</a>"
+                            +"</div>"
+                        +"</div>"
+                        +"<hr>"
+                        +"</div>"
+                );
+            })
+
+        }
+    })
+}
