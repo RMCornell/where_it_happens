@@ -1,17 +1,19 @@
 $(document).ready(function(){
     getBusinessArticles()
+    fetchArticlesButton()
 });
 
 function getBusinessArticles() {
     $.ajax({
         type: "GET",
-        url: "http://api.nytimes.com/svc/topstories/v1/business.json?api-key=<%= ENV["nytimes_top_stories_api_key"]  %>",
+        dataType: 'json',
+        url: "http://api.nytimes.com/svc/topstories/v1/business.json?callback=getBusinessArticles&api-key=<%= ENV["nytimes_top_stories_api_key"]  %>",
         success: function(articles){
             var stories = articles.results;
             $.each(stories, function(index, story){
-                var newArticleDate        = new Date(story.created_date);
-                var lastArticleDateString = $(".story").last().attr("created_date");
-                var lastArticleDate       = new Date(lastArticleDateString);
+                var newArticleDate        = story.created_date;
+                var lastArticleDateString = $("#top-stories-business-articles").last().children().first().data("created-date");
+                var lastArticleDate       = lastArticleDateString;
                 if (lastArticleDateString === undefined || newArticleDate > lastArticleDate) {
                     renderBusinessStory(story)
                 }
@@ -20,9 +22,15 @@ function getBusinessArticles() {
     })
 }
 
+function fetchArticlesButton() {
+    $("#fetch-button-articles").on("click", function(){
+        getBusinessArticles()
+    })
+}
+
 function renderBusinessStory(story) {
     $("#top-stories-business-articles").append(
-            "<div class='top-stories-business-articles'>"
+            "<div class='top-stories-business-articles' data-created-date='"+story.created_date+"'>"
             +"<div class='row'>"
             +"<div class='medium-12 columns top-stories-business-title'>"
             +"<h4>"+story.title+"</h4>"
@@ -47,6 +55,9 @@ function renderBusinessStory(story) {
             +"<div>"
             +"<a class='button' href='"+story.url+"'>Read More</a>"
             +"</div>"
+            +"</div>"
+            +"<div>"
+            +"<button id='fetch-button-articles' class='button'>Fetch</button>"
             +"</div>"
             +"<hr>"
             +"</div>"

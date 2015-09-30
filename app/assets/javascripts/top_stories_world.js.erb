@@ -1,22 +1,30 @@
 $(document).ready(function(){
-    getWorldArticles()
+    getWorldArticles();
+    fetchWorldArticlesButton()
 });
 
 function getWorldArticles() {
     $.ajax({
         type: "GET",
+        dataType: 'json',
         url: "http://api.nytimes.com/svc/topstories/v1/world.json?api-key=<%= ENV["nytimes_top_stories_api_key"]  %>",
         success: function(articles){
             var stories = articles.results;
             $.each(stories, function(index, story){
-                var newArticleDate        = new Date(story.created_date);
-                var lastArticleDateString = $(".story").last().attr("created_date");
-                var lastArticleDate       = new Date(lastArticleDateString);
+                var newArticleDate        = story.created_date;
+                var lastArticleDateString = $("#top-stories-world-articles").last().children().first().data("created-date");
+                var lastArticleDate       = lastArticleDateString;
                 if (lastArticleDateString === undefined || newArticleDate > lastArticleDate) {
                     renderWorldStory(story)
                 }
             })
         }
+    })
+}
+
+function fetchWorldArticlesButton() {
+    $("#fetch-button-world-articles").on("click", function(){
+        getWorldArticles()
     })
 }
 
@@ -46,6 +54,7 @@ function renderWorldStory(story) {
             +"<div class='row'>"
             +"<div>"
             +"<a class='button' href='"+story.url+"'>Read More</a>"
+            +"<button id='fetch-button-world-articles' class='button'>Fetch</button>"
             +"</div>"
             +"</div>"
             +"<hr>"
