@@ -83,49 +83,74 @@
     background-color: #5F81CF;
 }
 
-
-
-.story-card {
-    /*background-image: url("busy-people-background.jpg");*/
-    margin-top: 25px;
-
+/*Top Stories - World Page*/
+.top-stories-world-page {
+    background-color: grey;
 }
 
-.story-header {
-    background-color: darkgrey;
-    height: 50px;
-    margin-bottom: 5px;
+.top-stories-world-title {
+    background-color: #AA3939;
 }
 
-h3 {
-    color: gainsboro;
+.top-stories-world-byline {
+    background-color: #D46A6A;
 }
 
-@media only screen and (min-width: 40em) {
-    .top-bar {
-        text-align: center;
-    }
+.top-stories-world-section {
+    background-color: #D46A6A;
+}
 
-    ul.center-buttons {
-        display: inline-block; }
+.top-stories-world-abstract {
+    background-color: #FFAAAA;
+}
 
-    .logo {
-        left: 5px;
-        top: -2px;
-        position: absolute; } }
-.logo {
-    max-width: 2rem;
-    margin-top: -3px;
-    margin-left: 5px; }
+/*Top Stories - Politics Page*/
+.top-stories-politics-page {
+    background-color: grey;
+}
 
-.menu-icon {
-    padding-top: 1.2rem; }
+.top-stories-politics-title {
+    background-color: #57AE14;
+}
 
-.top-bar.expanded {
-    background: #666666; }
+.top-stories-politics-byline {
+    background-color: #74C933;
+}
 
-.logo {
-    margin-top: .5rem; }
+.top-stories-politics-section {
+    background-color: #74C933;
+}
+
+.top-stories-politics-abstract {
+    background-color: #93DE5A;
+}
+
+/*Top Stories - Technology Page*/
+.top-stories-technology-page {
+    background-color: grey;
+}
+
+.top-stories-technology-title {
+    background-color: #CCCC2D;
+}
+
+.top-stories-technology-byline {
+    background-color: #E1E153;
+}
+
+.top-stories-technology-section {
+    background-color: #E1E153;
+}
+
+.top-stories-technology-abstract {
+    background-color: #FFFF87;
+}
+
+/*Article Search Page*/
+.article-search-page {
+    background-color: darkgray;
+}
+
 
 
 .story-wrapper {

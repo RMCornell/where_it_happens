@@ -16,10 +16,10 @@ function getTechnologyArticles() {
         success: function(articles){
             var stories = articles.results;
             $.each(stories, function(index, story){
-                var newArticleDate        = new Date(story.created_date);
-                var lastArticleDate = $(".story").last().attr("created_date");
+                var newArticleDate        = story.created_date;
+                var lastArticleDate = $(".top-stories-technology-articles").last().data("created_date");
 
-                if (lastArticleDate === undefined || lastArticleDate > newArticleDate) {
+                if (lastArticleDate === undefined || lastArticleDate < newArticleDate) {
                     renderTechnologyStory(story)
                 }
             })
@@ -53,6 +53,13 @@ function renderTechnologyStory(story) {
             +"<div>"
             +"<a class='button' href='"+story.url+"'>Read More</a>"
             +"</div>"
+            +"<div>"
+            +"<img src=https://maps.googleapis.com/maps/api/staticmap?center="
+            +story.geo_facet
+            +"&zoom=4&size=300x300&maptype=roadmap&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C"
+            +story.geo_facet
+            +"&key=<%= ENV['google_static_maps_api_key'] %>"
+            +">"
             +"<hr>"
             +"</div>"
     );
