@@ -1,30 +1,29 @@
 $(document).ready(function(){
     getBusinessArticles()
-    fetchArticlesButton()
+    fetchBusinessArticlesButton()
 });
+
+function fetchBusinessArticlesButton() {
+    $("#fetch-business-articles").on("click", function() {
+        getBusinessArticles()
+    })
+}
 
 function getBusinessArticles() {
     $.ajax({
         type: "GET",
-        dataType: 'json',
         url: "http://api.nytimes.com/svc/topstories/v1/business.json?callback=getBusinessArticles&api-key=<%= ENV["nytimes_top_stories_api_key"]  %>",
         success: function(articles){
             var stories = articles.results;
             $.each(stories, function(index, story){
                 var newArticleDate        = story.created_date;
-                var lastArticleDateString = $("#top-stories-business-articles").last().children().first().data("created-date");
-                var lastArticleDate       = lastArticleDateString;
-                if (lastArticleDateString === undefined || newArticleDate > lastArticleDate) {
+                var lastArticleDate = $(".top-stories-business-articles").last().children().data("created-date");
+
+                if (lastArticleDate === undefined || lastArticleDate > newArticleDate) {
                     renderBusinessStory(story)
                 }
             })
         }
-    })
-}
-
-function fetchArticlesButton() {
-    $("#fetch-button-articles").on("click", function(){
-        getBusinessArticles()
     })
 }
 
@@ -34,7 +33,7 @@ function renderBusinessStory(story) {
             +"<div class='row'>"
             +"<div class='medium-12 columns top-stories-business-title'>"
             +"<h4>"+story.title+"</h4>"
-            +"<h6>"+story.created_date+"</h6>"
+            +"<h6>"+new Date(story.created_date)+"</h6>"
             +"</div>"
             +"</div>"
             +"<div class='row'>"
@@ -45,7 +44,6 @@ function renderBusinessStory(story) {
             +"<p>"+story.section+"</p>"
             +"</div>"
             +"</div>"
-
             +"<div class='row'>"
             +"<div class='medium-12 columns top-stories-business-abstract'>"
             +"<p>"+story.abstract+"</p>"
@@ -54,10 +52,6 @@ function renderBusinessStory(story) {
             +"<div class='row'>"
             +"<div>"
             +"<a class='button' href='"+story.url+"'>Read More</a>"
-            +"</div>"
-            +"</div>"
-            +"<div>"
-            +"<button id='fetch-button-articles' class='button'>Fetch</button>"
             +"</div>"
             +"<hr>"
             +"</div>"
