@@ -13,13 +13,11 @@ function getNewswireArticles() {
     $.ajax({
         type: "GET",
         url: "https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=<%= ENV["nytimes_newswire_api_key"]  %>",
-        dataType: "json",
-        async: true,
         success: function(articles){
             var stories = articles.results;
             $.each(stories, function(index, story){
                 var newArticleDate        = story.created_date;
-                var lastArticleDate = $(".newswire-articles").last().data("created-date");
+                var lastArticleDate = $(".newswire-articles").last().children().data("created-date");
 
                 if (lastArticleDate === undefined || lastArticleDate > newArticleDate) {
                     renderNewswireStory(story)
