@@ -17,15 +17,34 @@ function getNewswireArticles() {
             var stories = articles.results;
             $.each(stories, function(index, story){
                 var newArticleDate        = story.created_date;
-                var lastArticleDate = $(".newswire-articles").last().children().data("created-date");
+                var lastArticleDate = $(".newswire-articles").last().data("created-date");
 
                 if (lastArticleDate === undefined || lastArticleDate > newArticleDate) {
                     renderNewswireStory(story)
                 }
+                renderImage(story)
             })
         }
     })
 }
+
+function renderNewswireImage(story) {
+    $(".story_image").append("<img src='" + story.multimedia[2].url + "'>");
+}
+
+function renderStockImage() {
+    $(".story_image").append("<img src='http://a.dilcdn.com/bl/wp-content/uploads/sites/8/2014/03/image5.jpg'>");
+}
+
+function renderImage(story) {
+    if (story.multimedia[3] === undefined) {
+        renderStockImage()
+    } else {
+        renderNewswireImage(story)
+    }
+}
+
+
 
 function renderNewswireStory(story) {
     $("#newswire-article").append(
@@ -53,7 +72,21 @@ function renderNewswireStory(story) {
             +"<div>"
             +"<a class='button' href='"+story.url+"'>Read More</a>"
             +"</div>"
-            +"<hr>"
+            +"<div class='row'>"
+                +"<div class='medium-6 columns'>"
+                    +"<img src=https://maps.googleapis.com/maps/api/staticmap?center="
+                    +story.geo_facet[0]
+                    +"&zoom=4&size=300x300&maptype=roadmap&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C"
+                    +story.geo_facet[0]
+                    +"&key=<%= ENV['google_static_maps_api_key'] %>"
+                    +">"
+                +"</div>"
+                +"<div class='medium-6 columns story_image'>"
+                +"</div>"
             +"</div>"
+            +"</div>"
+            +"<hr>"
+
     );
 }
+
