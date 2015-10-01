@@ -1,92 +1,187 @@
-$(document).ready(function(){
-    getNewswireArticles();
-    fetchNewswireArticlesButton()
+$(document).ready(function() {
+    getNewswire()
+    fetchNewswire()
 });
 
-function fetchNewswireArticlesButton() {
-    $("#fetch-newswire-articles").on("click", function() {
-        getNewswireArticles()
-    })
-}
-
-function getNewswireArticles() {
+function getNewswire() {
     $.ajax({
         type: "GET",
-        url: "https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=<%= ENV["nytimes_newswire_api_key"]  %>",
-        success: function(articles){
-            var stories = articles.results;
-            $.each(stories, function(index, story){
-                var newArticleDate        = story.created_date;
-                var lastArticleDate = $(".newswire-articles").last().data("created-date");
+        url: "https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=<%= ENV["nytimes_newswire_api_key"] %>",
+        success: function(newswires){
+            var articles = newswires.results;
 
-                if (lastArticleDate === undefined || lastArticleDate > newArticleDate) {
-                    renderNewswireStory(story)
-                }
-                renderImage(story)
-            })
+            $.each(articles, function(index, article) {
+                renderArticleTitle(article);
+                renderArticleByline(article);
+                renderArticleSection(article);
+                renderArticleAbstract(article);
+                renderArticleImageMap(article);
+                renderArticleLink(article);
+            });
         }
     })
 }
 
-function renderNewswireImage(story) {
-    $(".story_image").append("<img src='" + story.multimedia[2].url + "'>");
+function fetchNewswire() {
+    $("#fetch-newswire-articles").on("click", function() {
+    $.ajax({
+        type: "GET",
+        url: "https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=<%= ENV["nytimes_newswire_api_key"] %>",
+        success: function(newswires){
+            var articles = newswires.results;
+
+            $.each(articles, function(index, article) {
+                var newArticleDate = new Date(article.created_date);
+                var mostRecentArticleDateString = $(".newswire-articles").first().data("created-date");
+
+                if (typeof(mostRecentArticleDateString) === "string") {
+                    var recentArticleDate = new Date(mostRecentArticleDateString)
+                }
+
+                if (recentArticleDate < newArticleDate) {
+                    renderArticleTitle(article);
+                    renderArticleByline(article);
+                    renderArticleSection(article);
+                    renderArticleAbstract(article);
+                    renderArticleImageMap(article);
+                    renderArticleLink(article);
+//                    debugger;
+                }
+            });
+        }
+    })
+    })
 }
 
-function renderStockImage() {
-    $(".story_image").append("<img src='http://a.dilcdn.com/bl/wp-content/uploads/sites/8/2014/03/image5.jpg'>");
+function renderArticleTitle(article) {
+    $("#newswire").append(
+            "<div class='newswire-articles newswire-page' data-created-date='"+article.created_date+"'>"
+                +"<div class='row'>"
+                    +"<div class='medium-12 columns'>"
+                        +"<div class='article-title'>"
+                            +"<h4>"+article.title+"</h4>"
+                        +"</div>"
+                    +"</div>"
+                +"</div>"
+            +"</div>"
+    )
 }
 
-function renderImage(story) {
-    if (story.multimedia[3] === undefined) {
-        renderStockImage()
+function renderArticleByline(article) {
+    $("#newswire").append(
+            "<div class='newswire-articles'>"
+                +"<div class='row'>"
+                    +"<div class='medium-12 columns'>"
+                        +"<div class='article-byline'>"
+                            +"<p>"+article.byline+"</p>"
+                        +"</div>"
+                    +"</div>"
+                +"</div>"
+            +"</div>"
+    )
+
+}
+
+function renderArticleSection(article){
+    $("#newswire").append(
+            "<div class='newswire-articles'>"
+                +"<div class='row'>"
+                    +"<div class='medium-12 columns'>"
+                        +"<div class='article-section'>"
+                            +"<p>"+article.section+"</p>"
+                        +"</div>"
+                    +"</div>"
+                +"</div>"
+            +"</div>"
+    )
+}
+
+function renderArticleAbstract(article) {
+    $("#newswire").append(
+            "<div class='newswire-articles'>"
+                +"<div class='row'>"
+                    +"<div class='medium-12 columns'>"
+                        +"<div class='article-abstract'>"
+                            +"<p>"+article.abstract+"</p>"
+                        +"</div>"
+                    +"</div>"
+                +"</div>"
+            +"</div>"
+    )
+}
+
+function renderArticleImageMap(article) {
+    var imageSource = article.multimedia[3];
+    var defaultImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png";
+
+    if (article.multimedia.length < 4) {
+        $("#newswire").append(
+                "<div class='newswire-articles'>"
+                    +"<div class='row'>"
+                        +"<div class='medium-6 columns'>"
+                            +"<div class='article-image'>"
+                                +"<img src='"+defaultImage+"'>"
+                            +"</div>"
+                        +"</div>"
+                    +"</div>"
+                +"</div>"
+        )
     } else {
-        renderNewswireImage(story)
+        $("#newswire").append(
+                "<div class='newswire-articles'>"
+                    +"<div class='row'>"
+                        +"<div class='medium-6 columns'>"
+                            +"<div class='article-image'>"
+                                +"<img src='"+imageSource.url+"'>"
+                            +"</div>"
+                        +"</div>"
+                    +"</div>"
+                +"</div>"
+        )
     }
+
+    var mapImage = "<img src=https://maps.googleapis.com/maps/api/staticmap?center="+article.geo_facet[0]+"&zoom=4&size=300x300&maptype=roadmap&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C"+article.geo_facet[0]+"&key=<%= ENV['google_static_maps_api_key'] %>";
+    var mapUnavailable = "http://pdportal.maineadulted.org/images/graphics/map-not-available_lg.gif";
+
+    if (article.geo_facet.length < 1) {
+        $("#newswire").append(
+                "<div class='newswire-articles'>"
+                    +"<div class='row'>"
+                        +"<div class='medium-6 columns'>"
+                            +"<div class='article-map'>"
+                                +"<img src='"+mapUnavailable+"'>"
+                            +"</div>"
+                        +"</div>"
+                    +"</div>"
+                +"</div>"
+        )
+    } else {
+        $("#newswire").append(
+                "<div class='newswire-articles'>"
+                    +"<div class='row'>"
+                        +"<div class='medium-6 columns'>"
+                            +"<div class='article-map'>"
+                                +"<img src='"+mapImage+"'>"
+                            +"</div>"
+                        +"</div>"
+                    +"</div>"
+                +"</div>"
+        )
+    }
+
 }
 
-
-
-function renderNewswireStory(story) {
-    $("#newswire-article").append(
-            "<div class='newswire-articles' data-created-date='"+story.created_date+"'>"
-            +"<div class='row'>"
-            +"<div class='medium-12 columns newswire-title'>"
-            +"<h4>"+story.title+"</h4>"
-            +"<h6>"+new Date(story.created_date)+"</h6>"
-            +"</div>"
-            +"</div>"
-            +"<div class='row'>"
-            +"<div class='medium-6 columns newswire-byline'>"
-            +"<p>"+story.byline+"</p>"
-            +"</div>"
-            +"<div class='medium-6 columns newswire-section'>"
-            +"<p>"+story.section+"</p>"
-            +"</div>"
-            +"</div>"
-            +"<div class='row'>"
-            +"<div class='medium-12 columns newswire-abstract'>"
-            +"<p>"+story.abstract+"</p>"
-            +"</div>"
-            +"</div>"
-            +"<div class='row'>"
-            +"<div>"
-            +"<a class='button' href='"+story.url+"'>Read More</a>"
-            +"</div>"
-            +"<div class='row'>"
-                +"<div class='medium-6 columns'>"
-                    +"<img src=https://maps.googleapis.com/maps/api/staticmap?center="
-                    +story.geo_facet[0]
-                    +"&zoom=4&size=300x300&maptype=roadmap&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C"
-                    +story.geo_facet[0]
-                    +"&key=<%= ENV['google_static_maps_api_key'] %>"
-                    +">"
+function renderArticleLink(article) {
+    $("#newswire").append(
+            "<div class='newswire-articles'>"
+                +"<div class='row'>"
+                    +"<div class='medium-12 columns'>"
+                        +"<div class='article-link'>"
+                            +"<a class='button' href='"+article.url+"'>Read More</a>"
+                        +"</div>"
+                    +"</div>"
                 +"</div>"
-                +"<div class='medium-6 columns story_image'>"
-                +"</div>"
-            +"</div>"
             +"</div>"
             +"<hr>"
-
-    );
+    )
 }
-
