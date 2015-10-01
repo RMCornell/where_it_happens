@@ -1,66 +1,145 @@
-$(document).ready(function(){
-    getBusinessArticles()
-    fetchBusinessArticlesButton()
+$(document).ready(function() {
+    getBusinessStories();
+    fetchBusinessStories()
 });
 
-function fetchBusinessArticlesButton() {
-    $("#fetch-business-articles").on("click", function() {
-        getBusinessArticles()
-    })
-}
-
-function getBusinessArticles() {
+function getBusinessStories() {
     $.ajax({
         type: "GET",
         url: "http://api.nytimes.com/svc/topstories/v1/business.json?callback=getBusinessArticles&api-key=<%= ENV["nytimes_top_stories_api_key"]  %>",
-        success: function(articles){
-            var stories = articles.results;
-            $.each(stories, function(index, story){
-                var newArticleDate        = story.created_date;
-                var lastArticleDate = $(".top-stories-business-articles").last().data("created-date");
+        success: function(worldstories){
+            var articles = worldstories.results;
 
-                if (lastArticleDate === undefined || lastArticleDate > newArticleDate) {
-                    renderBusinessStory(story)
-                }
-            })
+            $.each(articles, function(index, article) {
+                renderBusinessArticleTitle(article);
+                renderBusinessArticleBylineSection(article);
+                renderBusinessArticleAbstract(article);
+                renderBusinessArticleImageMap(article);
+            });
         }
     })
 }
 
-function renderBusinessStory(story) {
-    $("#top-stories-business-articles").append(
-            "<div class='top-stories-business-articles' data-created-date='"+story.created_date+"'>"
+function fetchBusinessStories() {
+    $("#fetch-newswire-articles").on("click", function() {
+        $.ajax({
+            type: "GET",
+            url: "http://api.nytimes.com/svc/topstories/v1/business.json?callback=getBusinessArticles&api-key=<%= ENV["nytimes_top_stories_api_key"]  %>",
+            success: function(businessstories){
+                var articles = businessstories.results;
+
+                $.each(articles, function(index, article) {
+                    var newArticleDate = new Date(article.created_date);
+                    var mostRecentArticleDateString = $(".newswire-articles").first().data("created-date");
+
+                    if (typeof(mostRecentArticleDateString) === "string") {
+                        var recentArticleDate = new Date(mostRecentArticleDateString)
+                    }
+
+                    if (recentArticleDate < newArticleDate) {
+                        renderBusinessArticleTitle(article);
+                        renderBusinessArticleBylineSection(article);
+                        renderBusinessArticleAbstract(article);
+                        renderBusinessArticleImageMap(article);
+                    }
+                });
+            }
+        })
+    })
+}
+
+function renderBusinessArticleTitle(article) {
+    $("#top-business-stories").append(
+            "<div class='newswire-articles newswire-page' data-created-date='"+article.created_date+"'>"
             +"<div class='row'>"
-            +"<div class='medium-12 columns top-stories-business-title'>"
-            +"<h4>"+story.title+"</h4>"
-            +"<h6>"+new Date(story.created_date)+"</h6>"
+            +"<div class='medium-12 columns business-article-title'>"
+            +"<h4><a href='"+article.url+"'>"+article.title+"</a></h4>"
             +"</div>"
             +"</div>"
+            +"</div>"
+            +"</div>"
+    )
+}
+
+function renderBusinessArticleBylineSection(article) {
+    $("#top-business-stories").append(
+            "<div class='newswire-articles'>"
             +"<div class='row'>"
-            +"<div class='medium-6 columns top-stories-business-byline'>"
-            +"<p>"+story.byline+"</p>"
+            +"<div class='medium-6 columns business-article-byline'>"
+            +"<p>"+article.byline+"</p>"
             +"</div>"
-            +"<div class='medium-6 columns top-stories-business-section'>"
-            +"<p>"+story.section+"</p>"
+            +"<div class='medium-6 columns business-article-section'>"
+            +"<p>"+article.section+"</p>"
             +"</div>"
             +"</div>"
+            +"</div>"
+    )
+
+}
+
+function renderBusinessArticleAbstract(article) {
+    $("#top-business-stories").append(
+            "<div class='newswire-articles'>"
             +"<div class='row'>"
-            +"<div class='medium-12 columns top-stories-business-abstract'>"
-            +"<p>"+story.abstract+"</p>"
+            +"<div class='medium-12 columns business-article-abstract'>"
+            +"<p>"+article.abstract+"</p>"
             +"</div>"
             +"</div>"
-            +"<div class='row'>"
-            +"<div>"
-            +"<a class='button' href='"+story.url+"'>Read More</a>"
             +"</div>"
-            +"<div>"
-            +"<img src=https://maps.googleapis.com/maps/api/staticmap?center="
-            +story.geo_facet
-            +"&zoom=4&size=300x300&maptype=roadmap&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C"
-            +story.geo_facet
-            +"&key=<%= ENV['google_static_maps_api_key'] %>"
-            +">"
-            +"<hr>"
             +"</div>"
-    );
+    )
+}
+
+function renderBusinessArticleImageMap(article) {
+    var imageSource = article.multimedia[3];
+    var defaultImage = "http://www.justshea.org/uploads/8/9/9/5/8995741/1134541_orig.jpg";
+
+    if (article.multimedia.length < 4) {
+        $("#top-business-stories").append(
+                "<div class='newswire-articles'>"
+                +"<div class='row'>"
+                +"<div class='medium-12 columns business-article-image'>"
+                +"<img src='"+defaultImage+"'>"
+                +"</div>"
+                +"</div>"
+                +"</div>"
+        )
+    } else {
+        $("#top-business-stories").append(
+                "<div class='newswire-articles'>"
+                +"<div class='row'>"
+                +"<div class='medium-12 columns business-article-image'>"
+                +"<img src='"+imageSource.url+"'>"
+                +"</div>"
+                +"</div>"
+                +"</div>"
+        )
+    }
+
+    var mapLocation = article.geo_facet[0];
+    var mapImage = "https://maps.googleapis.com/maps/api/staticmap?center="+mapLocation+"&zoom=4&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C"+mapLocation+"&key=<%= ENV['google_static_maps_api_key'] %>"
+
+    var mapUnavailable = "http://www.santek.jp/contactus/img/na.gif";
+
+    if (article.geo_facet.length < 1) {
+        $("#top-business-stories").append(
+                "<div class='newswire-articles'>"
+                +"<div class='row'>"
+                +"<div class='medium-12 medium-centered business-article-map'>"
+                +"<img src='"+mapUnavailable+"'>"
+                +"</div>"
+                +"</div>"
+                +"</div>"
+        )
+    } else {
+        $("#top-business-stories").append(
+                "<div class='newswire-articles'>"
+                +"<div class='row'>"
+                +"<div class='medium-12 medium-centered columns business-article-map'>"
+                +"<img src='"+mapImage+"'>"
+                +"</div>"
+                +"</div>"
+                +"</div>"
+        )
+    }
 }

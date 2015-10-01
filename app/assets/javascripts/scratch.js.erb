@@ -1,51 +1,51 @@
 //$(document).ready(function(){
-//    getTechnologyArticles();
-//    fetchTechnologyArticlesButton()
+//    getBusinessArticles()
+//    fetchBusinessArticlesButton()
 //});
 //
-//function fetchTechnologyArticlesButton() {
-//    $("#fetch-technology-articles").on("click", function() {
-//        getNewswireArticles()
+//function fetchBusinessArticlesButton() {
+//    $("#fetch-business-articles").on("click", function() {
+//        getBusinessArticles()
 //    })
 //}
 //
-//function getTechnologyArticles() {
+//function getBusinessArticles() {
 //    $.ajax({
 //        type: "GET",
-//        url: "http://api.nytimes.com/svc/topstories/v1/technology.json?api-key=<%= ENV["nytimes_top_stories_api_key"]  %>",
+//        url: "http://api.nytimes.com/svc/topstories/v1/business.json?callback=getBusinessArticles&api-key=<%= ENV["nytimes_top_stories_api_key"]  %>",
 //        success: function(articles){
 //            var stories = articles.results;
 //            $.each(stories, function(index, story){
 //                var newArticleDate        = story.created_date;
-//                var lastArticleDate = $(".top-stories-technology-articles").last().data("created_date");
+//                var lastArticleDate = $(".top-stories-business-articles").last().data("created-date");
 //
-//                if (lastArticleDate === undefined || lastArticleDate < newArticleDate) {
-//                    renderTechnologyStory(story)
+//                if (lastArticleDate === undefined || lastArticleDate > newArticleDate) {
+//                    renderBusinessStory(story)
 //                }
 //            })
 //        }
 //    })
 //}
 //
-//function renderTechnologyStory(story) {
-//    $("#top-stories-technology-articles").append(
-//            "<div class='top-stories-technology-articles'>"
+//function renderBusinessStory(story) {
+//    $("#top-stories-business-articles").append(
+//            "<div class='top-stories-business-articles' data-created-date='"+story.created_date+"'>"
 //            +"<div class='row'>"
-//            +"<div class='medium-12 columns top-stories-technology-title'>"
+//            +"<div class='medium-12 columns top-stories-business-title'>"
 //            +"<h4>"+story.title+"</h4>"
 //            +"<h6>"+new Date(story.created_date)+"</h6>"
 //            +"</div>"
 //            +"</div>"
 //            +"<div class='row'>"
-//            +"<div class='medium-6 columns top-stories-technology-byline'>"
+//            +"<div class='medium-6 columns top-stories-business-byline'>"
 //            +"<p>"+story.byline+"</p>"
 //            +"</div>"
-//            +"<div class='medium-6 columns top-stories-technology-section'>"
+//            +"<div class='medium-6 columns top-stories-business-section'>"
 //            +"<p>"+story.section+"</p>"
 //            +"</div>"
 //            +"</div>"
 //            +"<div class='row'>"
-//            +"<div class='medium-12 columns top-stories-technology-abstract'>"
+//            +"<div class='medium-12 columns top-stories-business-abstract'>"
 //            +"<p>"+story.abstract+"</p>"
 //            +"</div>"
 //            +"</div>"
