@@ -166,140 +166,103 @@
     vertical-align: middle;
 }
 
-/*Top Stories - Politics Page*/
-.top-stories-politics-page {
+/*Top Politic Stories*/
+.top-politic-page {
     background-color: grey;
 }
 
-.top-stories-politics-title {
+.politic-article-title {
     background-color: #57AE14;
+    margin: 0 0 0 0;
+    padding-left: 15px;
+    padding-right: 15px;
+
 }
 
-.top-stories-politics-byline {
+.politic-article-byline {
     background-color: #74C933;
+    margin: 0 0 0 0;
+
 }
 
-.top-stories-politics-section {
+.politic-article-section{
     background-color: #74C933;
+    margin: 0 0 0 0;
+
 }
 
-.top-stories-politics-abstract {
+.politic-article-abstract{
     background-color: #93DE5A;
+    margin: 0 0 0 0;
 }
 
-/*Top Stories - Technology Page*/
-.top-stories-technology-page {
+.politic-article-image {
+    background-color: #74C933;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.politic-article-map {
+    background-color: #57AE14;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/*Top Technology Stories*/
+.top-technology-page {
     background-color: grey;
 }
 
-.top-stories-technology-title {
+.technology-article-title {
     background-color: #CCCC2D;
+    margin: 0 0 0 0;
+    padding-left: 15px;
+    padding-right: 15px;
+
 }
 
-.top-stories-technology-byline {
+.technology-article-byline {
     background-color: #E1E153;
+    margin: 0 0 0 0;
+
 }
 
-.top-stories-technology-section {
+.technology-article-section{
     background-color: #E1E153;
+    margin: 0 0 0 0;
+
 }
 
-.top-stories-technology-abstract {
+.technology-article-abstract{
     background-color: #FFFF87;
+    margin: 0 0 0 0;
+}
+
+.technology-article-image {
+    background-color: #E1E153;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.technology-article-map {
+    background-color: #CCCC2D;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 /*Article Search Page*/
 .article-search-page {
     background-color: darkgray;
 }
-
-
-
-.story-wrapper {
-    height: 200px;
-    margin-top: 5px;
-}
-
-.story-frame {
-    background-color: grey;
-    height: 200px;
-    margin-top: 5px;
-}
-
-.story-title {
-    height: 200px;
-}
-
-.story-footer {
-    height: 50px;
-    margin-top: 5px;
-}
-
-.story-map{
-    height: 200px;
-    margin-top: 5px;
-}
-
-.newswire {
-    width: 50%;
-    height: 50px;
-    background-color: #666666;
-
-}
-
-.card {
-    height: 250px;
-    width: 200px;
-    display: inline-block;
-    margin-top: 25px;
-    margin-left: 25px;
-    margin-right: 25px;
-}
-
-.card-divider {
-    background-color: #666666;
-    display: inline-block;
-    height: 25px;
-    width: 200px;
-}
-
-.card-section {
-    background-color: darkgrey;
-    display: inline-block;
-    height: 50px;
-    width: 200px;
-    overflow: hidden;
-}
-
-
-.headline {
-    float: right;
-    display: block;
-}
-
-.byline {
-    float: right;
-    display: inline-block;
-}
-
-.thumbnail_image {
-    height: 75px;
-    width: 75px;
-}
-
-.story_image {
-    height: 200px;
-    width: 450px;
-    float: right;
-}
-
-.map_image {
-    height: 200px;
-    width: 440px;
-}
-
-.modal-map {
-    height: 400px;
-    width: 400px;
-}
-
