@@ -12,7 +12,8 @@ function getNewswire() {
 
             $.each(articles, function(index, article) {
                 renderArticleTitle(article);
-                renderArticleBylineSection(article);
+                renderArticleByline(article);
+                renderArticleSection(article);
                 renderArticleAbstract(article);
                 renderArticleImageMap(article);
                 renderArticleLink(article);
@@ -39,10 +40,10 @@ function fetchNewswire() {
 
                 if (recentArticleDate < newArticleDate) {
                     renderArticleTitle(article);
-                    renderArticleBylineSection(article);
+                    renderArticleByline(article);
+                    renderArticleSection(article);
                     renderArticleAbstract(article);
-                    renderArticleImage(article);
-                    renderArticleMap(article);
+                    renderArticleImageMap(article);
                     renderArticleLink(article);
 //                    debugger;
                 }
@@ -66,16 +67,26 @@ function renderArticleTitle(article) {
     )
 }
 
-function renderArticleBylineSection(article) {
+function renderArticleByline(article) {
     $("#newswire").append(
             "<div class='newswire-articles'>"
                 +"<div class='row'>"
-                    +"<div class='medium-6 columns'>"
+                    +"<div class='medium-12 columns'>"
                         +"<div class='article-byline'>"
                             +"<p>"+article.byline+"</p>"
                         +"</div>"
                     +"</div>"
-                    +"<div class='medium-6 columns'>"
+                +"</div>"
+            +"</div>"
+    )
+
+}
+
+function renderArticleSection(article){
+    $("#newswire").append(
+            "<div class='newswire-articles'>"
+                +"<div class='row'>"
+                    +"<div class='medium-12 columns'>"
                         +"<div class='article-section'>"
                             +"<p>"+article.section+"</p>"
                         +"</div>"

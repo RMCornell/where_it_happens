@@ -24,10 +24,14 @@
 
 .article-title {
     background-color: #FF7706;
+    margin-bottom: 0px;
     margin-top: 0;
     margin-left: 0;
     margin-right: 0;
-    margin-bottom: 0;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
 }
 
 .article-byline {
@@ -36,6 +40,10 @@
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 0;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
 }
 
 .article-section{
@@ -44,6 +52,10 @@
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 0;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
 }
 
 .article-abstract{
@@ -52,6 +64,10 @@
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 0;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
 }
 
 .article-image {
@@ -61,6 +77,10 @@
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 0;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
 }
 
 
@@ -69,6 +89,10 @@
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 0;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
 }
 
 /*Top Stories - Business Page*/
