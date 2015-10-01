@@ -24,75 +24,50 @@
 
 .article-title {
     background-color: #FF7706;
-    margin-bottom: 0px;
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding-top: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0;
+    margin: 0 0 0 0;
+    padding-left: 15px;
+    padding-right: 15px;
+
 }
 
 .article-byline {
     background-color: #FF9238;
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0;
+    margin: 0 0 0 0;
+
 }
 
 .article-section{
     background-color: #FF9238;
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0;
+    margin: 0 0 0 0;
+
 }
 
 .article-abstract{
     background-color: #FFAA64;
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0;
+    margin: 0 0 0 0;
 }
 
 .article-image {
-    width: 100%;
-    height: 100%;
+    background-color: #FF9238;
     margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
     margin-bottom: 0;
-    padding-top: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.article-map {
+    background-color: #FF7706;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 
 .article-link {
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0;
+    margin: 0 0 0 0;
 }
 
 /*Top Stories - Business Page*/
