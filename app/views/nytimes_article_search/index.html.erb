@@ -9,7 +9,7 @@
     <div class='top-stories-business-articles'>
       <div class='row'>
         <div class='medium-12 columns top-stories-business-title'>
-          <h4><%= article[:headline][:main] %></h4>
+          <h4><%= link_to article[:headline][:main], article[:web_url] %></h4>
         </div>
       </div>
       <div class='row'>
@@ -24,11 +24,6 @@
       <div class='row'>
         <div class='medium-12 columns top-stories-business-byline'>
           <p><%= article[:snippet] %></p>
-        </div>
-      </div>
-      <div class='row'>
-        <div>
-          <%= link_to "Read More", article[:web_url], class: "button" %>
         </div>
       </div>
       <hr>

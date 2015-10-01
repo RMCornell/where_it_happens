@@ -19,8 +19,8 @@
 /*Custom CSS*/
 /*NewsWire Page*/
 .newswire-page {
-    background-color: grey;
-}
+     background-color: grey;
+ }
 
 .article-title {
     background-color: #FF7706;
@@ -70,203 +70,249 @@
     margin: 0 0 0 0;
 }
 
-/*Top Stories - Business Page*/
-.top-stories-business-page {
+/*Top World Stories*/
+.top-world-page {
     background-color: grey;
 }
 
-.top-stories-business-title {
+.world-article-title {
     background-color: #1749BD;
+    margin: 0 0 0 0;
+    padding-left: 15px;
+    padding-right: 15px;
+
 }
 
-.top-stories-business-byline {
+.world-article-byline {
     background-color: #3B64C3;
+    margin: 0 0 0 0;
+
 }
 
-.top-stories-business-section {
+.world-article-section{
     background-color: #3B64C3;
+    margin: 0 0 0 0;
+
 }
 
-.top-stories-business-abstract {
+.world-article-abstract{
     background-color: #5F81CF;
+    margin: 0 0 0 0;
 }
 
-/*Top Stories - National Page*/
-.top-stories-nation-page {
-    background-color: grey;
+.world-article-image {
+    background-color: #3B64C3;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
 }
 
-.top-stories-nation-title {
+.world-article-map {
     background-color: #1749BD;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
 }
 
-.top-stories-nation-byline {
-    background-color: #3B64C3;
-}
-
-.top-stories-nation-section {
-    background-color: #3B64C3;
-}
-
-.top-stories-nation-abstract {
-    background-color: #5F81CF;
-}
-
-/*Top Stories - World Page*/
-.top-stories-world-page {
+/*Top Nation Stories*/
+.top-nation-page {
     background-color: grey;
 }
 
-.top-stories-world-title {
+.nation-article-title {
     background-color: #AA3939;
+    margin: 0 0 0 0;
+    padding-left: 15px;
+    padding-right: 15px;
+
 }
 
-.top-stories-world-byline {
+.nation-article-byline {
     background-color: #D46A6A;
+    margin: 0 0 0 0;
+
 }
 
-.top-stories-world-section {
+.nation-article-section{
     background-color: #D46A6A;
+    margin: 0 0 0 0;
+
 }
 
-.top-stories-world-abstract {
+.nation-article-abstract{
     background-color: #FFAAAA;
+    margin: 0 0 0 0;
 }
 
-/*Top Stories - Politics Page*/
-.top-stories-politics-page {
+.nation-article-image {
+    background-color: #D46A6A;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.nation-article-map {
+    background-color: #AA3939;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/*Top Politic Stories*/
+.top-politic-page {
     background-color: grey;
 }
 
-.top-stories-politics-title {
+.politic-article-title {
     background-color: #57AE14;
+    margin: 0 0 0 0;
+    padding-left: 15px;
+    padding-right: 15px;
+
 }
 
-.top-stories-politics-byline {
+.politic-article-byline {
     background-color: #74C933;
+    margin: 0 0 0 0;
+
 }
 
-.top-stories-politics-section {
+.politic-article-section{
     background-color: #74C933;
+    margin: 0 0 0 0;
+
 }
 
-.top-stories-politics-abstract {
+.politic-article-abstract{
     background-color: #93DE5A;
+    margin: 0 0 0 0;
 }
 
-/*Top Stories - Technology Page*/
-.top-stories-technology-page {
+.politic-article-image {
+    background-color: #74C933;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.politic-article-map {
+    background-color: #57AE14;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/*Top Technology Stories*/
+.top-technology-page {
     background-color: grey;
 }
 
-.top-stories-technology-title {
+.technology-article-title {
     background-color: #CCCC2D;
+    margin: 0 0 0 0;
+    padding-left: 15px;
+    padding-right: 15px;
+
 }
 
-.top-stories-technology-byline {
+.technology-article-byline {
     background-color: #E1E153;
+    margin: 0 0 0 0;
+
 }
 
-.top-stories-technology-section {
+.technology-article-section{
     background-color: #E1E153;
+    margin: 0 0 0 0;
+
 }
 
-.top-stories-technology-abstract {
+.technology-article-abstract{
     background-color: #FFFF87;
+    margin: 0 0 0 0;
 }
+
+.technology-article-image {
+    background-color: #E1E153;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.technology-article-map {
+    background-color: #CCCC2D;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/*Top Business Stories*/
+.top-business-page {
+    background-color: grey;
+}
+
+.business-article-title {
+    background-color: #672770;
+    margin: 0 0 0 0;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+
+.business-article-byline {
+    background-color: #83478B;
+    margin: 0 0 0 0;
+
+}
+
+.business-article-section{
+    background-color: #83478B;
+    margin: 0 0 0 0;
+
+}
+
+.business-article-abstract{
+    background-color: #A071A7;
+    margin: 0 0 0 0;
+}
+
+.business-article-image {
+    background-color: #83478B;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.business-article-map {
+    background-color: #672770;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
 
 /*Article Search Page*/
 .article-search-page {
     background-color: darkgray;
 }
-
-
-
-.story-wrapper {
-    height: 200px;
-    margin-top: 5px;
-}
-
-.story-frame {
-    background-color: grey;
-    height: 200px;
-    margin-top: 5px;
-}
-
-.story-title {
-    height: 200px;
-}
-
-.story-footer {
-    height: 50px;
-    margin-top: 5px;
-}
-
-.story-map{
-    height: 200px;
-    margin-top: 5px;
-}
-
-.newswire {
-    width: 50%;
-    height: 50px;
-    background-color: #666666;
-
-}
-
-.card {
-    height: 250px;
-    width: 200px;
-    display: inline-block;
-    margin-top: 25px;
-    margin-left: 25px;
-    margin-right: 25px;
-}
-
-.card-divider {
-    background-color: #666666;
-    display: inline-block;
-    height: 25px;
-    width: 200px;
-}
-
-.card-section {
-    background-color: darkgrey;
-    display: inline-block;
-    height: 50px;
-    width: 200px;
-    overflow: hidden;
-}
-
-
-.headline {
-    float: right;
-    display: block;
-}
-
-.byline {
-    float: right;
-    display: inline-block;
-}
-
-.thumbnail_image {
-    height: 75px;
-    width: 75px;
-}
-
-.story_image {
-    height: 200px;
-    width: 450px;
-    float: right;
-}
-
-.map_image {
-    height: 200px;
-    width: 440px;
-}
-
-.modal-map {
-    height: 400px;
-    width: 400px;
-}
-
