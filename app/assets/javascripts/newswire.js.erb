@@ -12,11 +12,9 @@ function getNewswire() {
 
             $.each(articles, function(index, article) {
                 renderArticleTitle(article);
-                renderArticleByline(article);
-                renderArticleSection(article);
+                renderArticleBylineSection(article);
                 renderArticleAbstract(article);
                 renderArticleImageMap(article);
-                renderArticleLink(article);
             });
         }
     })
@@ -40,12 +38,9 @@ function fetchNewswire() {
 
                 if (recentArticleDate < newArticleDate) {
                     renderArticleTitle(article);
-                    renderArticleByline(article);
-                    renderArticleSection(article);
+                    renderArticleBylineSection(article);
                     renderArticleAbstract(article);
                     renderArticleImageMap(article);
-                    renderArticleLink(article);
-//                    debugger;
                 }
             });
         }
@@ -57,9 +52,8 @@ function renderArticleTitle(article) {
     $("#newswire").append(
             "<div class='newswire-articles newswire-page' data-created-date='"+article.created_date+"'>"
                 +"<div class='row'>"
-                    +"<div class='medium-12 columns'>"
-                        +"<div class='article-title'>"
-                            +"<h4>"+article.title+"</h4>"
+                    +"<div class='medium-12 columns article-title'>"
+                            +"<h4><a href='"+article.url+"'>"+article.title+"</a></h4>"
                         +"</div>"
                     +"</div>"
                 +"</div>"
@@ -67,41 +61,27 @@ function renderArticleTitle(article) {
     )
 }
 
-function renderArticleByline(article) {
+function renderArticleBylineSection(article) {
     $("#newswire").append(
             "<div class='newswire-articles'>"
                 +"<div class='row'>"
-                    +"<div class='medium-12 columns'>"
-                        +"<div class='article-byline'>"
+                    +"<div class='medium-6 columns article-byline'>"
                             +"<p>"+article.byline+"</p>"
-                        +"</div>"
                     +"</div>"
-                +"</div>"
-            +"</div>"
-    )
-
-}
-
-function renderArticleSection(article){
-    $("#newswire").append(
-            "<div class='newswire-articles'>"
-                +"<div class='row'>"
-                    +"<div class='medium-12 columns'>"
-                        +"<div class='article-section'>"
+                    +"<div class='medium-6 columns article-section'>"
                             +"<p>"+article.section+"</p>"
-                        +"</div>"
                     +"</div>"
                 +"</div>"
             +"</div>"
     )
+
 }
 
 function renderArticleAbstract(article) {
     $("#newswire").append(
             "<div class='newswire-articles'>"
                 +"<div class='row'>"
-                    +"<div class='medium-12 columns'>"
-                        +"<div class='article-abstract'>"
+                    +"<div class='medium-12 columns article-abstract'>"
                             +"<p>"+article.abstract+"</p>"
                         +"</div>"
                     +"</div>"
@@ -112,17 +92,15 @@ function renderArticleAbstract(article) {
 
 function renderArticleImageMap(article) {
     var imageSource = article.multimedia[3];
-    var defaultImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png";
+    var defaultImage = "http://www.justshea.org/uploads/8/9/9/5/8995741/1134541_orig.jpg";
 
     if (article.multimedia.length < 4) {
         $("#newswire").append(
                 "<div class='newswire-articles'>"
                     +"<div class='row'>"
-                        +"<div class='medium-6 columns'>"
-                            +"<div class='article-image'>"
+                        +"<div class='medium-12 columns article-image'>"
                                 +"<img src='"+defaultImage+"'>"
                             +"</div>"
-                        +"</div>"
                     +"</div>"
                 +"</div>"
         )
@@ -130,27 +108,25 @@ function renderArticleImageMap(article) {
         $("#newswire").append(
                 "<div class='newswire-articles'>"
                     +"<div class='row'>"
-                        +"<div class='medium-6 columns'>"
-                            +"<div class='article-image'>"
+                        +"<div class='medium-12 columns article-image'>"
                                 +"<img src='"+imageSource.url+"'>"
                             +"</div>"
-                        +"</div>"
                     +"</div>"
                 +"</div>"
         )
     }
 
-    var mapImage = "<img src=https://maps.googleapis.com/maps/api/staticmap?center="+article.geo_facet[0]+"&zoom=4&size=300x300&maptype=roadmap&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C"+article.geo_facet[0]+"&key=<%= ENV['google_static_maps_api_key'] %>";
-    var mapUnavailable = "http://pdportal.maineadulted.org/images/graphics/map-not-available_lg.gif";
+    var mapLocation = article.geo_facet[0];
+    var mapImage = "https://maps.googleapis.com/maps/api/staticmap?center="+mapLocation+"&zoom=4&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C"+mapLocation+"&key=<%= ENV['google_static_maps_api_key'] %>"
+
+    var mapUnavailable = "http://www.santek.jp/contactus/img/na.gif";
 
     if (article.geo_facet.length < 1) {
         $("#newswire").append(
                 "<div class='newswire-articles'>"
                     +"<div class='row'>"
-                        +"<div class='medium-6 columns'>"
-                            +"<div class='article-map'>"
-                                +"<img src='"+mapUnavailable+"'>"
-                            +"</div>"
+                        +"<div class='medium-12 medium-centered article-map'>"
+                            +"<img src='"+mapUnavailable+"'>"
                         +"</div>"
                     +"</div>"
                 +"</div>"
@@ -159,29 +135,11 @@ function renderArticleImageMap(article) {
         $("#newswire").append(
                 "<div class='newswire-articles'>"
                     +"<div class='row'>"
-                        +"<div class='medium-6 columns'>"
-                            +"<div class='article-map'>"
-                                +"<img src='"+mapImage+"'>"
-                            +"</div>"
+                        +"<div class='medium-12 medium-centered columns article-map'>"
+                            +"<img src='"+mapImage+"'>"
                         +"</div>"
                     +"</div>"
                 +"</div>"
         )
     }
-
-}
-
-function renderArticleLink(article) {
-    $("#newswire").append(
-            "<div class='newswire-articles'>"
-                +"<div class='row'>"
-                    +"<div class='medium-12 columns'>"
-                        +"<div class='article-link'>"
-                            +"<a class='button' href='"+article.url+"'>Read More</a>"
-                        +"</div>"
-                    +"</div>"
-                +"</div>"
-            +"</div>"
-            +"<hr>"
-    )
 }
